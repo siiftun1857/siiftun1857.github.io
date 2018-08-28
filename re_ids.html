@@ -1,0 +1,106 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>IDS Table</title>
+<script type="text/javascript">
+var xmlhttp;
+var textbank;
+function loadXMLDoc(url)
+{
+xmlhttp=null;
+if (window.XMLHttpRequest)
+  {// code for Firefox, Opera, IE7, etc.
+  xmlhttp=new XMLHttpRequest();
+  }
+else if (window.ActiveXObject)
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+if (xmlhttp!=null)
+  {
+  xmlhttp.onreadystatechange=state_Change;
+  xmlhttp.open("GET",url,true);
+  xmlhttp.send(null);
+  }
+else
+  {
+  alert("Your browser does not support XMLHTTP.");
+  }
+}
+
+function state_Change()
+{
+if (xmlhttp.readyState==4)
+  {// 4 = "loaded"
+  if (xmlhttp.status==200)
+    {// 200 = "OK"
+//    document.getElementById('T1').innerHTML=xmlhttp.responseText;
+    textbank=xmlhttp.responseText;
+	formatting();
+    }
+  else
+    {
+    alert("Problem retrieving data:" + xmlhttp.statusText);
+    }
+  }
+}
+function checkNumber(theObj) {
+  var reg = /^[0-9]+.?[0-9]*$/;
+  if (reg.test(theObj)) {
+    return true;
+  }
+  return false;
+}
+function formatting_line(text)
+{
+	if(text[0]=='#')
+		return '';
+	var words=new Array(20);
+	words=text.split("|");
+	
+	if(!checkNumber(words[0]))
+		return '';
+		
+	var output='<tr><td>'+words[0]+'</td><td bgcolor="'+words[1]+'">'+words[1]+'</td><td>'+words[2]+'</td><td>'+words[3]+'</td><td>'+words[4]+'</td><td>'+words[5]+'</td><td>'+words[6]+'</td><td>'+words[7]+'</td><td>'+words[8]+'</td><td><a href="http://steamcommunity.com/sharedfiles/filedetails/?id='+words[9]+'">'+words[9]+'</td></tr>';
+	return output;
+}
+function formatting()
+{
+	var linescount=textbank.length-textbank.replace(/\n/g,'').length;
+	var lines=textbank.split("\n");
+	//alert(linescount);
+	for(var i=0;i<linescount;i++)
+	{
+		document.getElementById('T1').innerHTML+=formatting_line(lines[i]);
+	}
+}
+function load_()
+{
+	loadXMLDoc('https://raw.githubusercontent.com/siiftun1857/reassembly-upload-dropbox/master/IDS.txt');
+}
+//<tr><td><!--FactionID--></td><td bgcolor=""><!--FacColor--></td><td><!--Author--></td><td><!--Series--></td><td><!--FactionName--></td><td><!--BlockIDLeast--></td><td><!--BlockIDMost--></td><td><!--RegionIDLeast--></td><td><!--RegionIDMost--></td><td><!--WorkshipID--></td></tr>
+</script>
+</head>
+<body onload="load_()">
+<h1 align="center">Reassembly IDS Table</h1>
+<p align="center">By Magnus siiftun1857 Frankline</p>
+<!--<p align="center"><button onclick="load_()">Reload</button></p>-->
+<table align="center" bolder="2" class="MsoTableGrid" style="border: currentColor; border-image: none; border-collapse: collapse;" border="1" cellspacing="0" cellpadding="0">
+<tbody id="T1">
+<tr align="center">
+<td><b>FactionID</b></td>
+<td><b>FacColor</b></td>
+<td><b>Author</b></td>
+<td><b>Series</b></td>
+<td><b>FactionName</b></td>
+<td><b>BlockIDLeast</b></td>
+<td><b>BlockIDMost</b></td>
+<td><b>RegionIDLeast</b></td>
+<td><b>RegionIDMost</b></td>
+<td><b>WorkshipID</b></td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>
