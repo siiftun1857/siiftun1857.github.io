@@ -22,20 +22,27 @@ function quickSort(arr,sortby) {
     var left = [];
     var right = [];
     for (var i = 0; i < arr.length; i++){
-		if(checkNumber(arr[i].split("|")[sortby])&&checkNumber(pivot.split("|")[sortby]))
+		for(var j = sortby;j>-1;j--)
 		{
-			if (parseInt(arr[i].split("|")[sortby]) < parseInt(pivot.split("|")[sortby])) {
-				left.push(arr[i]);
-			} else {
-				right.push(arr[i]);
+			if(checkNumber(arr[i].split("|")[j])&&checkNumber(pivot.split("|")[j]))
+			{
+				if(j!=0&&parseInt(arr[i].split("|")[j]) == parseInt(pivot.split("|")[j])){
+					continue;
+				} else if (parseInt(arr[i].split("|")[j]) < parseInt(pivot.split("|")[j])) {
+					left.push(arr[i]);break;
+				} else {
+					right.push(arr[i]);break;
+				}
 			}
-		}
-		else
-		{
-			if (arr[i].split("|")[sortby] < pivot.split("|")[sortby]) {
-				left.push(arr[i]);
-			} else {
-				right.push(arr[i]);
+			else
+			{
+				if (j!=0&&arr[i].split("|")[j] == pivot.split("|")[j]) {
+					continue;
+				} else if (arr[i].split("|")[j] < pivot.split("|")[j]) {
+					left.push(arr[i]);break;
+				} else {
+					right.push(arr[i]);break;
+				}
 			}
 		}
     }
