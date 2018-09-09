@@ -7,6 +7,14 @@
 var xmlhttp;
 var textbank;
 
+function checkNumber(theObj) {
+  var reg = /^[0-9]+.?[0-9]*$/;
+  if (reg.test(theObj)) {
+    return true;
+  }
+  return false;
+}
+
 function quickSort(arr,sortby) {
     if (arr.length <= 1) { return arr; }
     var pivotIndex = Math.floor(arr.length / 2)
@@ -14,11 +22,22 @@ function quickSort(arr,sortby) {
     var left = [];
     var right = [];
     for (var i = 0; i < arr.length; i++){
-        if (arr[i].split("|")[sortby] < pivot.split("|")[sortby]) {
-            left.push(arr[i]);
-        } else {
-            right.push(arr[i]);
-        }
+		if(checkNumber(arr[i].split("|")[sortby])&&checkNumber(pivot.split("|")[sortby]))
+		{
+			if (parseInt(arr[i].split("|")[sortby]) < parseInt(pivot.split("|")[sortby])) {
+				left.push(arr[i]);
+			} else {
+				right.push(arr[i]);
+			}
+		}
+		else
+		{
+			if (arr[i].split("|")[sortby] < pivot.split("|")[sortby]) {
+				left.push(arr[i]);
+			} else {
+				right.push(arr[i]);
+			}
+		}
     }
     return quickSort(left,sortby).concat([pivot], quickSort(right,sortby));
 };
@@ -61,13 +80,6 @@ if (xmlhttp.readyState==4)
     alert("Problem retrieving data:" + xmlhttp.statusText);
     }
   }
-}
-function checkNumber(theObj) {
-  var reg = /^[0-9]+.?[0-9]*$/;
-  if (reg.test(theObj)) {
-    return true;
-  }
-  return false;
 }
 
 function formatting_line(text)
