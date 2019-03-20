@@ -4,34 +4,7 @@
 <meta charset="UTF-8" />
 <title>Baicizhan Result Patcher</title>
 <script type="text/javascript">
-function doit() {
-	var resulta=document.getElementById("resulta");
-	var result="http://learn.baicizhan.com/daka_page/weixin?sign=";
-	var caster="";
-	var disturber_enabled=false;
-	
-	if(document.getElementById("disturber_enabler").checked==true)
-	{
-		disturber_enabled=true;
-		caster += "&Hfff" + Math.floor(Math.random()*1000000) + "&";
- 	}
-	caster += "today=";
-	caster += document.getElementById("input_today").value;
-	if(disturber_enabled)
-		caster += "&Haaa=" + Math.floor(Math.random()*100000);
-	caster += "&days=";
-	caster += document.getElementById("input_days").value;
-	if(disturber_enabled)
-		caster += "&Hbbb=" + Math.floor(Math.random()*1000000);
-	caster += "&unid=";
-	caster += document.getElementById("input_unid").value;
-	if(disturber_enabled)
-		caster += "&Hccc=" + Math.floor(Math.random()*100000);
-	result += btoa(encodeURI(caster));
-	resulta.href=result;
-	resulta.innerHTML=result;
-	//decodeURI(atob(caster));
-}
+eval(function(p,a,c,k,e,d){e=function(c){return(c<a?"":e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--)d[e(c)]=k[c]||e(c);k=[function(e){return d[e]}];e=function(){return'\\w+'};c=1;};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p;}('h n(){5 9=3.4("9");5 a="l://o.q.m/p/k?g=";5 0="";5 2=f;7(3.4("j").i==c){2=c;0+="&A"+1.6(1.8()*d)+"&"}0+="z=";0+=3.4("y").b;7(2)0+="&B="+1.6(1.8()*e);0+="&E=";0+=3.4("D").b;7(2)0+="&C="+1.6(1.8()*d);0+="&t=";0+=3.4("s").b;7(2)0+="&r="+1.6(1.8()*e);a+=u(x(0));9.w=a;9.v=a;}',41,41,'caster|Math|disturber_enabled|document|getElementById|var|floor|if|random|resulta|result|value|true|1000000|100000|false|sign|function|checked|disturber_enabler|weixin|http|com|doit|learn|daka_page|baicizhan|Hccc|input_unid|unid|btoa|innerHTML|href|encodeURI|input_today|today|Hfff|Haaa|Hbbb|input_days|days'.split('|'),0,{}))
 </script>
 </head>
 <body>
