@@ -11,7 +11,10 @@ function doit() {
 	var disturber_enabled=false;
 	
 	if(document.getElementById("disturber_enabler").checked==true)
+	{
 		disturber_enabled=true;
+		caster += "&Hfff" + Math.floor(Math.random()*1000000) + "&";
+ 	}
 	caster += "today=";
 	caster += document.getElementById("input_today").value;
 	if(disturber_enabled)
